@@ -10,10 +10,6 @@ module.exports = {
   owner: false,
   execute: async (message, args, client, prefix) => {
        const he = new AttachmentBuilder(`https://iili.io/J6WmwNe.png`);
-       const sahu = new ActionRowBuilder().addComponents(
-        new ButtonBuilder().setStyle(ButtonStyle.Link).setURL(`https://discord.com/api/oauth2/authorize?client_id=${client.user.id}&permissions=414530792776&scope=bot%20applications.commands`).setLabel(`Invite`),
-        new ButtonBuilder().setStyle(ButtonStyle.Link).setURL(`https://gaana.pro`).setLabel(`Website`)
-      )
        const row = new ActionRowBuilder().addComponents(
         new StringSelectMenuBuilder()
         .setCustomId("select")
@@ -51,7 +47,7 @@ module.exports = {
             }
         ])
       )
-      const msg = await message.reply({ components: [sahu], files: [he], components: [row]})
+      const msg = await message.reply({ content: `discord.gg/gaana`, files: [he], components: [row]})
         const collector = await msg.createMessageComponentCollector({
           filter :(interaction) => {
               if(message.author.id === interaction.user.id) return true;
