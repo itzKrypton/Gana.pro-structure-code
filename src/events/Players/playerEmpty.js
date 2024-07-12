@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { EmbedBuilder, AttachmentBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const db2 = require("../../models/autoreconnect");
 const { autoplay } = require("../../utils/functions");
 const { REST } = require("@discordjs/rest");
@@ -29,12 +29,7 @@ module.exports = {
     if (TwoFourSeven) {
       client.channels.cache.get(player.textId)?.send({
         embeds: [
-          new EmbedBuilder()
-            .setColor(client.sahilcolor)
-            .setAuthor({
-              name: "| Queue ended. 24/7 is Enable i am not leaving the voice channel.",
-              iconURL: client.user.displayAvatarURL({ dynamic: true }),
-            }),
+          new AttachmentBuilder(`https://iili.io/dqV2VmG.png`), 
         ], components: [
           new ActionRowBuilder().addComponents(
             new ButtonBuilder()
