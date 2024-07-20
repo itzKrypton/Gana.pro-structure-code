@@ -40,6 +40,7 @@ module.exports = {
     const msg = await message.channel.send({fles: [sahil2], components: [sahil1]});
     let flexx2 = new AttachmentBuilder(`https://iili.io/dna7fsf.jpg`);
     let devil2 = new AttachmentBuilder(`https://iili.io/dnaaIou.jpg`);
+    let roonee2 = new AttachmentBuilder(`https://iili.io/dnacbIt.jpg`);
     const collector = await msg.createMessageComponentCollector({
                 filter :(interaction) => {
                     if(message.author.id === interaction.user.id) return true;
