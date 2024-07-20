@@ -12,6 +12,7 @@ module.exports = {
   owner: false,
   execute: async (message, args, client, prefix) => {
 
+    let sahil = new AttachmentBuilder(`https://iili.io/dnYS3gV.jpg`);
     const sahil1 = new ActionRowBuilder().addComponents(
        new ButtonBuilder().setStyle(ButtonStyle.Danger).setCustomId(`sahil`).setLabel(`アバヤンカラ`).setDisabled(true),
        new ButtonBuilder().setStyle(ButtonStyle.Secondary).setCustomId(`flexx`).setLabel(`Nitrix`),
@@ -36,7 +37,6 @@ module.exports = {
        new ButtonBuilder().setStyle(ButtonStyle.Secondary).setCustomId(`devil`).setLabel(`Devil`),
        new ButtonBuilder().setStyle(ButtonStyle.Danger).setCustomId(`roonee`).setLabel(`Roonee`).setDisabled(true)
     )
+    const msg = await message.channel.send({fles: [sahil], components: [sahil1]});
   }
 }
-
-1
