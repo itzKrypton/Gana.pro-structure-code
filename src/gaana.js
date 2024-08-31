@@ -1,11 +1,12 @@
 const Prefix = require('./models/prefix');
 // Load prefix data into client.prefixes Map
 async function loadPrefixes(client) {
-  const prefixes = await Prefix.findAll();
-  client.prefixes = new Map();
-  prefixes.forEach(prefixRecord => {
-      client.prefixes.set(prefixRecord.id, prefixRecord.prefix);
-  });
+    const prefixes = await Prefix.findAll();
+    client.prefixes = new Map();
+    
+    prefixes.forEach(prefixRecord => {
+        client.prefixes.set(prefixRecord.id, prefixRecord.prefix);
+    });
 }
 const { initializeDatabase } = require('./database');
 const MusicBot = require("./structures/MusicClient");
