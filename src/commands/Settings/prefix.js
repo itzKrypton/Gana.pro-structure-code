@@ -14,37 +14,40 @@ module.exports = {
   owner: false,
   execute: async (message, args, client, prefix) => {
     let data = await Prefix.findOne({ where: { id: message.guildId } });
-    const pre = args.join(' ');
+    const pre = args.join(' ').trim();
 
-    let px;
+    let currentPrefix;
     if (!data || !data.prefix) {
-      px = client.config.prefix;
+      currentPrefix = client.config.prefix;
     } else {
-      px = data.Prefix;
+      currentPrefix = data.prefix;  // Ensure 'prefix' is used
     }
-    if (!pre[0]) {
-      return message.channel.send({ content: `The current prefix is \`${px}\`.` });
+
+    if (!pre) {
+      return message.channel.send({ content: `The current prefix is \`${currentPrefix}\`.` });
     }
+
     if (pre.length >= 4) {
-      const embed = new AttachmentBuilder(`https://iili.io/d2UkWt1.png`)
+      const embed = new AttachmentBuilder(`https://iili.io/d2UkWt1.png`);
       return message.reply({ files: [embed] });
-  }
-  if (data) {
-    data.oldPrefix = prefix;
-    data.prefix = pre;
-    await data.save();
-    const embed = new AttachmentBuilder(`https://iili.io/d2U8GQ1.png`)
-    return message.reply({ files: [embed] });
-} else {
-    data = Prefix.create({
-      id: message.guildId,
-      prefix: pre,
-      oldPrefix: px,
-    });
+    }
 
-    const embed = new AttachmentBuilder(`https://iili.io/d2U8GQ1.png`)
+    if (data) {
+      data.oldPrefix = prefix;
+      data.prefix = pre;
+      await data.save();
+    } else {
+      data = await Prefix.create({
+        id: message.guildId,
+        prefix: pre,
+        oldPrefix: currentPrefix,
+      });
+    }
 
+    // Update the prefix in the client's map
+    client.prefixes.set(message.guildId, pre);
+
+    const embed = new AttachmentBuilder(`https://iili.io/d2U8GQ1.png`);
     return message.reply({ files: [embed] });
-   }
   }
 };
