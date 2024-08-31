@@ -30,10 +30,10 @@ module.exports = {
       return message.reply("You are blacklisted and can't use my commands.");
     }
 
-    const prefixMatch = "1178298709407174666"
-    var prefix = client.prefix;
-    const ress = await db.findOne({ _id: message.guildId });
-    if (ress && ress.prefix) prefix = ress.prefix;
+    // Fetch prefix from the database
+    let prefix = client.config.prefix;
+    const dbPrefix = await db.findOne({ where: { id: message.guildId } });
+    if (dbPrefix && dbPrefix.prefix) prefix = dbPrefix.prefix;
 
     const mentionRegex = RegExp(`^<@!?${client.user.id}>$`); 
       if (message.content.match(mentionRegex)) {
