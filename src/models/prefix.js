@@ -15,14 +15,7 @@ const Prefix = prefixSequelize.define('Prefix', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    moderator: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    lastUpdated: {
-        type: DataTypes.STRING,
-        defaultValue: () => new Date().getDate().toString(), // Default value as current date string
-    },
+    
 }, {
     tableName: 'prefixes',
     timestamps: false,
