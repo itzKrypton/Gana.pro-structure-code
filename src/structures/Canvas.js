@@ -5,6 +5,10 @@ GlobalFonts.registerFromPath(
     path.resolve(__dirname, '../base/Kalam-Regular.ttf'),
     'kalam',
   );
+GlobalFonts.registerFromPath(
+    path.resolve(__dirname, '../base/ITCBenguiatStdBookCn.OTF'),
+    'ITC',
+  );
 const axios = require("axios");
 module.exports = class Canvas {
     constructor(client) {
@@ -18,12 +22,12 @@ module.exports = class Canvas {
         const img = await loadImage('https://iili.io/J6C1Xa9.png');
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#f9f9f9";
-        ctx.font = "bold 65px Times_New_Roman,NOTO_COLOR_EMOJI";
+        ctx.font = "bold 65px ITC,NOTO_COLOR_EMOJI";
         ctx.fillText(`${track.title.length > 15
         ? track.title.slice(0, 15) + "....."
         : track.title + "....."}`, 425, 180);
         ctx.fillStyle = "#999797";
-        ctx.font = "50px momcakebold";
+        ctx.font = "50px ITC";
         ctx.fillText(`${track.author}`, 425, 260);
         ctx.fillStyle = "#E8E8E8";
 
@@ -69,10 +73,10 @@ module.exports = class Canvas {
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
           const title = tracks[0].title.length > 25 ? tracks[0].title.slice(0, 25) + "..." : tracks[0].title || tracks.title;
           ctx.fillStyle = "#f9f9f9";
-          ctx.font = "bold 75px Times_New_Roman,NOTO_COLOR_EMOJI";
+          ctx.font = "bold 75px ITC,NOTO_COLOR_EMOJI";
           ctx.fillText(title, 570, 250);
           ctx.fillStyle = "#999797";
-          ctx.font = "65px momcakebold";
+          ctx.font = "65px ITC";
           ctx.fillText(tracks[0].author || "Ganna Playlist", 570, 340);
           ctx.fillStyle = "#E8E8E8";
           const thumbnailCanvas = createCanvas(564, 564);
@@ -115,10 +119,10 @@ async buildqueue2(tracks, result) {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       const ti = result.playlistName;
       ctx.fillStyle = "#f9f9f9";
-      ctx.font = "bold 75px Times_New_Roman,NOTO_COLOR_EMOJI";
+      ctx.font = "bold 75px ITC,NOTO_COLOR_EMOJI";
       ctx.fillText(ti, 570, 250);
       ctx.fillStyle = "#999797";
-      ctx.font = "65px momcakebold";
+      ctx.font = "65px ITC";
       ctx.fillText(`Total: ${tracks.length}`, 570, 340);
       ctx.fillStyle = "#E8E8E8";
       const thumbnailCanvas = createCanvas(564, 564);
@@ -161,7 +165,7 @@ async msg1(client, prefix) {
       const img = await loadImage('https://iili.io/J6WgtvR.png');
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       ctx.fillStyle = "#f9f9f9";
-      ctx.font = "bold 65px Times_New_Roman, NOTO_COLOR_EMOJI";
+      ctx.font = "bold 65px ITC, NOTO_COLOR_EMOJI";
       ctx.fillText(client.prefix, 710, 70);
   return canvas.toBuffer("image/png");
 
@@ -232,10 +236,10 @@ async prev(track, result) {
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       const title = track.title.length > 25 ? track.title.slice(0, 25) + "..." : track.title || track.title;
       ctx.fillStyle = "#f9f9f9";
-      ctx.font = "bold 75px Times_New_Roman,NOTO_COLOR_EMOJI";
+      ctx.font = "bold 75px ITC,NOTO_COLOR_EMOJI";
       ctx.fillText(title, 570, 250);
       ctx.fillStyle = "#999797";
-      ctx.font = "65px momcakebold";
+      ctx.font = "65px ITC";
       ctx.fillText(track.author || "Ganna Playlist", 570, 340);
       ctx.fillStyle = "#E8E8E8";
       const thumbnailCanvas = createCanvas(564, 564);
@@ -278,7 +282,7 @@ async generateQueueCanvas(page, track, player) {
     const img = await loadImage('https://iili.io/JiOcL3Q.png'); // Background image URL
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     ctx.fillStyle = '#f9f9f9';
-    ctx.font = 'bold 50px Times_New_Roman, NOTO_COLOR_EMOJI';
+    ctx.font = 'bold 50px ITC, NOTO_COLOR_EMOJI';
 
     const start = (page - 1) * TotalSongsPerPage;
     const end = page * TotalSongsPerPage;
@@ -313,17 +317,17 @@ async generateQueueCanvas(page, track, player) {
 
       // Track number
       ctx.fillStyle = '#999797';
-      ctx.font = '30px Times_New_Roman, NOTO_COLOR_EMOJI';
+      ctx.font = '30px ITC, NOTO_COLOR_EMOJI';
       ctx.fillText(`${start + (i + 1)}`, 40, 190 + i * 140);
 
       // Track title
       ctx.fillStyle = 'white';
-      ctx.font = '30px Times_New_Roman, NOTO_COLOR_EMOJI';
+      ctx.font = '30px ITC, NOTO_COLOR_EMOJI';
       ctx.fillText(`${track.title.length > 15 ? track.title.slice(0, 15) + "..." : track.title}`, 210, 170 + i * 140);
 
       // Track artist
       ctx.fillStyle = '#999797';
-      ctx.font = '30px Times_New_Roman, NOTO_COLOR_EMOJI';
+      ctx.font = '30px ITC, NOTO_COLOR_EMOJI';
       ctx.fillText(`${track.author}`, 210, 210 + i * 140);
 
       // Track album
@@ -363,12 +367,12 @@ async generateQueueCanvas(page, track, player) {
         // Add the title text
         const title = player.queue.current.title.length > 25 ? player.queue.current.title.slice(0, 25) + "..." : player.queue.current.title;
         ctx.fillStyle = "#f9f9f9";
-        ctx.font = "bold 75px Times_New_Roman,NOTO_COLOR_EMOJI";
+        ctx.font = "bold 75px ITC,NOTO_COLOR_EMOJI";
         ctx.fillText(title, 570, 250);
 
         // Add the author text
         ctx.fillStyle = "#999797";
-        ctx.font = "65px momcakebold";
+        ctx.font = "65px ITC";
         ctx.fillText(player.queue.current.track.author || "Ganna Playlist", 570, 340);
 
         // Add play/pause and navigation icons
